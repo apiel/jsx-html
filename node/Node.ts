@@ -1,5 +1,5 @@
 import { NODE_TYPE } from '../constants';
-import { renderer, renderChildren } from '../jsx';
+import { renderer } from '../jsx';
 import { ChildNodeType } from '../types';
 
 export class Node {
@@ -9,11 +9,24 @@ export class Node {
         public children?: ChildNodeType[],
     ) {}
 
-    render() {
+    render(): string | any[] {
         return renderer(this);
     }
 
     renderChildren() {
-        return renderChildren(this.children);
+        const result = [];
+        this.children.forEach((child) => {
+            const renderedChild = child.render();
+            if (renderedChild) {
+                if (Array.isArray(renderedChild)) {
+                    renderedChild.forEach(
+                        (subchild) => subchild && result.push(subchild),
+                    );
+                } else {
+                    result.push(renderedChild);
+                }
+            }
+        });
+        return result;
     }
 }

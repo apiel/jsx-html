@@ -14,23 +14,6 @@ import { ComponentNode } from './node/ComponentNode';
 
 export let renderer = html();
 
-export function renderChildren(children: ChildNodeType[]) {
-    const result = [];
-    children.forEach((child) => {
-        const renderedChild = child.render();
-        if (renderedChild) {
-            if (Array.isArray(renderedChild)) {
-                renderedChild.forEach(
-                    (subchild) => subchild && result.push(subchild),
-                );
-            } else {
-                result.push(renderedChild);
-            }
-        }
-    });
-    return result;
-}
-
 export function normalizeChildren(
     children: NullableChildType[],
 ): ChildNodeType[] {
@@ -57,20 +40,20 @@ export function normalizeChildren(
     return result;
 }
 
-export const jsx = <P = NodePropsType>(
+export const jsx = <P extends NodePropsType = NodePropsType>(
     element: string | ComponentFunctionType,
     props: P | null,
     ...children: NullableChildType[]
 ) => {
-    props = props || ({} as P);
+    const nodeProps = props || {};
     children = normalizeChildren(children);
 
     if (typeof element === 'string') {
-        return new ElementNode(element, props, children as any);
+        return new ElementNode(element, nodeProps, children as any);
     }
 
     if (typeof element === 'function') {
-        return new ComponentNode(element, props, children as any);
+        return new ComponentNode(element, nodeProps, children as any);
     }
 
     throw new TypeError(`Expected jsx element to be a string or a function`);

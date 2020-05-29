@@ -1,6 +1,6 @@
-import { jsx } from './jsx';
+import { jsx, Fragment } from './jsx';
 
-export { jsx };
+export { jsx, Fragment };
 
 export const React = {
     createElement(factory: any, props: any, ...children: any[]) {

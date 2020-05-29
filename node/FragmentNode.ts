@@ -1,13 +1,15 @@
 import { NODE_TYPE } from '../constants';
 import { ChildNodeType } from '../types';
-import { renderChildren } from '../jsx';
+import { Node } from './Node';
 
-export class FragmentNode {
+export class FragmentNode extends Node {
     type = NODE_TYPE.FRAGMENT;
 
-    constructor(public children: ChildNodeType[]) {}
+    constructor(children: ChildNodeType[]) {
+        super(children);
+    }
 
     render() {
-        return renderChildren(this.children);
+        return this.renderChildren();
     }
 }

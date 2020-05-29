@@ -6,7 +6,7 @@ import {
 } from '../types';
 import { NODE_TYPE } from '../constants';
 import { FragmentNode } from './FragmentNode';
-import { normalizeChildren, renderer, renderChildren } from '../jsx';
+import { normalizeChildren } from '../jsx';
 import { Node } from './Node';
 
 export class ComponentNode extends Node {
