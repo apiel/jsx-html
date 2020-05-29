@@ -1,10 +1,5 @@
-import { React, Fragment } from '../index.ts';
-
-// declare namespace JSX {
-//     interface IntrinsicElements {
-//         [elemName: string]: any;
-//     }
-// }
+/// <reference path="../jsx.d.ts" />
+import { React, Fragment } from '../main.ts';
 
 const Title = () => <h1>title</h1>;
 const Value = ({ val }: { val: string }) => <p>value: {val}</p>;
