@@ -1,5 +1,5 @@
-import { NODE_TYPE } from '../constants';
-import { Node } from './Node';
+import { NODE_TYPE } from '../constants.ts';
+import { Node } from './Node.ts';
 
 export class TextNode extends Node {
     type = NODE_TYPE.TEXT;

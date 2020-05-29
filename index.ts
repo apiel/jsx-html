@@ -1,4 +1,4 @@
-import { jsx, Fragment } from './jsx';
+import { jsx, Fragment } from './jsx.ts';
 
 export { jsx, Fragment };
 

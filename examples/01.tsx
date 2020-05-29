@@ -1,4 +1,10 @@
-import { React, Fragment } from '..';
+import { React, Fragment } from '../index.ts';
+
+// declare namespace JSX {
+//     interface IntrinsicElements {
+//         [elemName: string]: any;
+//     }
+// }
 
 const Title = () => <h1>title</h1>;
 const Value = ({ val }: { val: string }) => <p>value: {val}</p>;
@@ -7,7 +13,9 @@ const Numeric = ({ num }: { num: number }) => <p>num: {num}</p>;
 const View = () => (
     <div class="deno">
         <Title />
-        <p onclick={() => 'lol'} valid checked={true} select=''>land</p>
+        <p onclick={() => 'lol'} valid checked={true} select="">
+            land
+        </p>
         <br />
         <hr />
         <Fragment>

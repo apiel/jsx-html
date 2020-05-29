@@ -1,9 +1,9 @@
-import { NODE_TYPE } from '../constants';
-import { renderer } from '../jsx';
-import { ChildNodeType } from '../types';
+import { NODE_TYPE } from '../constants.ts';
+import { renderer } from '../jsx.ts';
+import { ChildNodeType } from '../types.ts';
 
-export class Node {
-    type: NODE_TYPE;
+export abstract class Node {
+    abstract type: NODE_TYPE;
 
     constructor(
         public children?: ChildNodeType[],
@@ -14,8 +14,8 @@ export class Node {
     }
 
     renderChildren() {
-        const result = [];
-        this.children.forEach((child) => {
+        const result: string[] = [];
+        this.children?.forEach((child) => {
             const renderedChild = child.render();
             if (renderedChild) {
                 if (Array.isArray(renderedChild)) {

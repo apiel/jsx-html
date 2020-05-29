@@ -1,6 +1,6 @@
-import { NODE_TYPE } from '../constants';
-import { NodePropsType, ChildNodeType } from '../types';
-import { Node } from './Node';
+import { NODE_TYPE } from '../constants.ts';
+import { NodePropsType, ChildNodeType } from '../types.ts';
+import { Node } from './Node.ts';
 
 export class ElementNode extends Node {
     type = NODE_TYPE.ELEMENT;

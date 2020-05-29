@@ -2,12 +2,11 @@ import {
     NodePropsType,
     ComponentFunctionType,
     ChildNodeType,
-    NodeType,
-} from '../types';
-import { NODE_TYPE } from '../constants';
-import { FragmentNode } from './FragmentNode';
-import { normalizeChildren } from '../jsx';
-import { Node } from './Node';
+} from '../types.ts';
+import { NODE_TYPE } from '../constants.ts';
+import { FragmentNode } from './FragmentNode.ts';
+import { normalizeChildren } from '../jsx.ts';
+import { Node } from './Node.ts';
 
 export class ComponentNode extends Node {
     type = NODE_TYPE.COMPONENT;

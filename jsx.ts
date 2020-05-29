@@ -1,23 +1,23 @@
-import { NODE_TYPE } from './constants';
+import { NODE_TYPE } from './constants.ts';
 import {
     ChildNodeType,
     NodePropsType,
     ComponentFunctionType,
     NullableChildType,
     ChildType,
-} from './types';
+} from './types.ts';
 
-import { html } from './html';
-import { TextNode } from './node/TextNode';
-import { ElementNode } from './node/ElementNode';
-import { ComponentNode } from './node/ComponentNode';
+import { html } from './html.ts';
+import { TextNode } from './node/TextNode.ts';
+import { ElementNode } from './node/ElementNode.ts';
+import { ComponentNode } from './node/ComponentNode.ts';
 
 export let renderer = html();
 
 export function normalizeChildren(
     children: NullableChildType[],
 ): ChildNodeType[] {
-    const result = [];
+    const result: any[] = [];
 
     children.forEach((child) => {
         if (child && typeof child !== 'boolean') {

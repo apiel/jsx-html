@@ -1,5 +1,5 @@
-import { NODE_TYPE } from './constants';
-import { NodePropsType } from './types';
+import { NODE_TYPE } from './constants.ts';
+import { NodePropsType } from './types.ts';
 
 const ELEMENT_PROP = {
     INNER_HTML: 'innerHTML',
