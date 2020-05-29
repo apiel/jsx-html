@@ -9,11 +9,11 @@ import { FragmentNode } from './FragmentNode';
 import { normalizeChildren, renderer, renderChildren } from '../jsx';
 import { Node } from './Node';
 
-export class ComponentNode<P = NodePropsType> extends Node {
+export class ComponentNode extends Node {
     type = NODE_TYPE.COMPONENT;
 
     constructor(
-        public component: ComponentFunctionType<P>,
+        public component: ComponentFunctionType,
         public props: NodePropsType,
         children: ChildNodeType[],
     ) {

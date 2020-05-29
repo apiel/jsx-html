@@ -4,8 +4,6 @@ import {
     NodePropsType,
     ComponentFunctionType,
     NullableChildType,
-    NodeType,
-    EmptyProps,
     ChildType,
 } from './types';
 
@@ -33,37 +31,34 @@ export function renderChildren(children: ChildNodeType[]) {
     return result;
 }
 
-export function normalizeChildren(children: NullableChildType[]): ChildNodeType[] {
+export function normalizeChildren(
+    children: NullableChildType[],
+): ChildNodeType[] {
     const result = [];
 
-    for (const child of children) {
-        if (!child) {
-            continue;
-        } else if (typeof child === 'string' || typeof child === 'number') {
-            result.push(new TextNode(`${child}`));
-        } else if (typeof child === 'boolean') {
-            continue;
-        } else if (Array.isArray(child)) {
-            for (const subchild of normalizeChildren(child)) {
-                result.push(subchild);
-            }
-        } else if (
-            child &&
-            (child.type === NODE_TYPE.ELEMENT ||
+    children.forEach((child) => {
+        if (child && typeof child !== 'boolean') {
+            if (typeof child === 'string' || typeof child === 'number') {
+                result.push(new TextNode(`${child}`));
+            } else if (Array.isArray(child)) {
+                normalizeChildren(child).forEach(result.push);
+            } else if (
+                child.type === NODE_TYPE.ELEMENT ||
                 child.type === NODE_TYPE.TEXT ||
-                child.type === NODE_TYPE.COMPONENT)
-        ) {
-            result.push(child);
-        } else {
-            throw new TypeError(`Unrecognized node type: ${typeof child}`);
+                child.type === NODE_TYPE.COMPONENT
+            ) {
+                result.push(child);
+            } else {
+                throw new TypeError(`Unrecognized node type: ${typeof child}`);
+            }
         }
-    }
+    });
 
     return result;
 }
 
 export const jsx = <P = NodePropsType>(
-    element: string | ComponentFunctionType<P>,
+    element: string | ComponentFunctionType,
     props: P | null,
     ...children: NullableChildType[]
 ) => {
@@ -81,7 +76,7 @@ export const jsx = <P = NodePropsType>(
     throw new TypeError(`Expected jsx element to be a string or a function`);
 };
 
-export const Fragment: ComponentFunctionType<EmptyProps> = (
+export const Fragment = (
     props: NodePropsType,
     children: ChildType,
 ): NullableChildType => {
