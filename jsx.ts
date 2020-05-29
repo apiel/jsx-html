@@ -10,127 +10,30 @@ import {
 } from './types';
 
 import { html } from './html';
+import { TextNode } from './node/TextNode';
+import { ElementNode } from './node/ElementNode';
+import { ComponentNode } from './node/ComponentNode';
 
 export let renderer = html();
 
-function renderChildren<T>(
-    children: ChildNodeType[],
-): T[] {
+export function renderChildren(children: ChildNodeType[]) {
     const result = [];
-
-    for (const child of children) {
+    children.forEach((child) => {
         const renderedChild = child.render();
-
         if (renderedChild) {
             if (Array.isArray(renderedChild)) {
-                for (const subchild of renderedChild) {
-                    if (subchild) {
-                        result.push(subchild);
-                    }
-                }
+                renderedChild.forEach(
+                    (subchild) => subchild && result.push(subchild),
+                );
             } else {
                 result.push(renderedChild);
             }
         }
-    }
-
+    });
     return result;
 }
 
-export class ElementNode {
-    type: string = NODE_TYPE.ELEMENT;
-    name: string;
-    props: NodePropsType;
-    children: ChildNodeType[];
-    onRender?: <T>(element: T) => void;
-
-    constructor(name: string, props: NodePropsType, children: ChildNodeType[]) {
-        this.name = name;
-        this.props = props;
-        this.children = children;
-
-        const onRender = props.onRender;
-        if (typeof onRender === 'function') {
-            this.onRender = onRender;
-            delete props.onRender;
-        }
-    }
-
-    render() {
-        const el = renderer(this);
-        if (this.onRender) {
-            this.onRender(el);
-        }
-        return el;
-    }
-
-    renderChildren<T>(): T[] {
-        return renderChildren(this.children);
-    }
-}
-
-export class FragmentNode {
-    type: string = NODE_TYPE.FRAGMENT;
-    children: ChildNodeType[];
-
-    constructor(children: ChildNodeType[]) {
-        this.children = children;
-    }
-
-    render<T>(): T[] {
-        return renderChildren(this.children);
-    }
-}
-
-export class TextNode {
-    type: typeof NODE_TYPE.TEXT = NODE_TYPE.TEXT;
-
-    text: string;
-
-    constructor(text: string) {
-        this.text = text;
-    }
-
-    render() {
-        return renderer(this);
-    }
-}
-
-export class ComponentNode<P = NodePropsType> {
-    type: typeof NODE_TYPE.COMPONENT = NODE_TYPE.COMPONENT;
-
-    component: ComponentFunctionType<P>;
-    props: NodePropsType;
-    children: ChildNodeType[];
-
-    constructor(
-        component: ComponentFunctionType<P>,
-        props: NodePropsType,
-        children: ChildNodeType[],
-    ) {
-        this.component = component;
-        this.props = props;
-        this.children = children;
-    }
-
-    renderComponent(): any {
-        const props = this.props;
-        const child = normalizeChild(this.component(props, this.children));
-        if (child) {
-            return (child as any).render();
-        }
-    }
-
-    render() {
-        return renderer(this);
-    }
-
-    renderChildren<T>(): T[] {
-        return renderChildren(this.children);
-    }
-}
-
-function normalizeChildren(children: NullableChildType[]): ChildNodeType[] {
+export function normalizeChildren(children: NullableChildType[]): ChildNodeType[] {
     const result = [];
 
     for (const child of children) {
@@ -157,16 +60,6 @@ function normalizeChildren(children: NullableChildType[]): ChildNodeType[] {
     }
 
     return result;
-}
-
-function normalizeChild(child: any): NodeType | void {
-    const children = normalizeChildren(Array.isArray(child) ? child : [child]);
-
-    if (children.length === 1) {
-        return children[0];
-    } else if (children.length > 1) {
-        return new FragmentNode(children);
-    }
 }
 
 export const jsx = <P = NodePropsType>(

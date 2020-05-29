@@ -1,4 +1,7 @@
-import { ElementNode, TextNode, ComponentNode, FragmentNode } from './jsx';
+import { ElementNode } from './node/ElementNode';
+import { TextNode } from './node/TextNode';
+import { ComponentNode } from './node/ComponentNode';
+import { FragmentNode } from './node/FragmentNode';
 
 export type NodePropsType = {
     [key: string]: any;
