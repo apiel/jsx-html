@@ -7,40 +7,28 @@ import {
 import { NODE_TYPE } from '../constants';
 import { FragmentNode } from './FragmentNode';
 import { normalizeChildren, renderer, renderChildren } from '../jsx';
+import { Node } from './Node';
 
-export class ComponentNode<P = NodePropsType> {
+export class ComponentNode<P = NodePropsType> extends Node {
     type = NODE_TYPE.COMPONENT;
 
     constructor(
         public component: ComponentFunctionType<P>,
         public props: NodePropsType,
-        public children: ChildNodeType[],
-    ) {}
+        children: ChildNodeType[],
+    ) {
+        super(children);
+    }
 
     renderComponent() {
-        const child = this.normalizeChild(
-            this.component(this.props, this.children),
-        );
-        return child && child.render();
-    }
-
-    render() {
-        return renderer(this);
-    }
-
-    renderChildren() {
-        return renderChildren(this.children);
-    }
-
-    private normalizeChild(child: any): NodeType | void {
+        const child = this.component(this.props, this.children);
         const children = normalizeChildren(
             Array.isArray(child) ? child : [child],
         );
-
         if (children.length === 1) {
-            return children[0];
+            return children[0].render();
         } else if (children.length > 1) {
-            return new FragmentNode(children);
+            return new FragmentNode(children).render();
         }
     }
 }

@@ -1,12 +1,10 @@
 import { NODE_TYPE } from '../constants';
-import { renderer } from '../jsx';
+import { Node } from './Node';
 
-export class TextNode {
+export class TextNode extends Node {
     type = NODE_TYPE.TEXT;
 
-    constructor(public text: string) {}
-
-    render() {
-        return renderer(this);
+    constructor(public text: string) {
+        super();
     }
 }

@@ -3,12 +3,9 @@ import { ChildNodeType } from '../types';
 import { renderChildren } from '../jsx';
 
 export class FragmentNode {
-    type: string = NODE_TYPE.FRAGMENT;
-    children: ChildNodeType[];
+    type = NODE_TYPE.FRAGMENT;
 
-    constructor(children: ChildNodeType[]) {
-        this.children = children;
-    }
+    constructor(public children: ChildNodeType[]) {}
 
     render() {
         return renderChildren(this.children);
