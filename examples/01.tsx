@@ -7,7 +7,9 @@ const Numeric = ({ num }: { num: number }) => <p>num: {num}</p>;
 const View = () => (
     <div class="deno">
         <Title />
-        <p>land</p>
+        <p onclick={() => 'lol'} valid checked={true} select=''>land</p>
+        <br />
+        <hr />
         <Fragment>
             <Value val="hello" />
             <Numeric num={23} />

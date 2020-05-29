@@ -1,13 +1,8 @@
-
 import { NODE_TYPE } from './constants';
 import { NodePropsType } from './types';
 
 const ELEMENT_PROP = {
     INNER_HTML: 'innerHTML',
-};
-
-const SELF_CLOSING_TAGS = {
-    br: true,
 };
 
 function htmlEncode(text: string): string {
@@ -20,25 +15,20 @@ function htmlEncode(text: string): string {
         .replace(/\//g, '&#x2F;');
 }
 
-function propsToHTML(props: NodePropsType): string {
-    const keys = Object.keys(props).filter((key) => {
-        const val = props[key];
-
+function getValidProps(props: NodePropsType) {
+    return Object.keys(props).filter((key) => {
         if (key === ELEMENT_PROP.INNER_HTML) {
             return false;
         }
-
-        if (
-            typeof val === 'string' ||
-            typeof val === 'number' ||
-            val === true
-        ) {
-            return true;
-        }
-
-        return false;
+        const val = props[key];
+        return (
+            typeof val === 'string' || typeof val === 'number' || val === true
+        );
     });
+}
 
+function propsToHTML(props: NodePropsType): string {
+    const keys = getValidProps(props);
     if (!keys.length) {
         return '';
     }
@@ -46,18 +36,9 @@ function propsToHTML(props: NodePropsType): string {
     const pairs = keys.map((key) => {
         const val = props[key];
 
-        if (val === true) {
-            return `${htmlEncode(key)}`;
-        }
-
-        if (typeof val !== 'string' && typeof val !== 'number') {
-            throw new TypeError(`Unexpected prop type: ${typeof val}`);
-        }
-
-        if (val === '') {
+        if (val === true || val === '') {
             return htmlEncode(key);
         }
-
         return `${htmlEncode(key)}="${htmlEncode(val.toString())}"`;
     });
 
@@ -65,7 +46,7 @@ function propsToHTML(props: NodePropsType): string {
 }
 
 export function html() {
-    const htmlRenderer = (node) => {
+    const htmlRenderer = (node: any) => {
         if (node.type === NODE_TYPE.COMPONENT) {
             return [].concat(node.renderComponent(htmlRenderer)).join('');
         }
@@ -73,16 +54,14 @@ export function html() {
         if (node.type === NODE_TYPE.ELEMENT) {
             const renderedProps = propsToHTML(node.props);
 
-            if (SELF_CLOSING_TAGS[node.name]) {
-                return `<${node.name}${renderedProps} />`;
-            } else {
-                const renderedChildren =
-                    typeof node.props[ELEMENT_PROP.INNER_HTML] === 'string'
-                        ? node.props[ELEMENT_PROP.INNER_HTML]
-                        : node.renderChildren(htmlRenderer).join('');
+            const renderedChildren =
+                typeof node.props[ELEMENT_PROP.INNER_HTML] === 'string'
+                    ? node.props[ELEMENT_PROP.INNER_HTML]
+                    : node.renderChildren(htmlRenderer).join('');
 
-                return `<${node.name}${renderedProps}>${renderedChildren}</${node.name}>`;
-            }
+            return renderedChildren
+                ? `<${node.name}${renderedProps}>${renderedChildren}</${node.name}>`
+                : `<${node.name}${renderedProps} />`;
         }
 
         if (node.type === NODE_TYPE.TEXT) {
