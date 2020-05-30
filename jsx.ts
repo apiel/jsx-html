@@ -1,6 +1,4 @@
-import { NODE_TYPE } from './constants.ts';
 import {
-    ChildNodeType,
     NodePropsType,
     ComponentFunctionType,
     NullableChildType,
@@ -8,37 +6,11 @@ import {
 } from './types.ts';
 
 import { html } from './html.ts';
-import { TextNode } from './node/TextNode.ts';
 import { ElementNode } from './node/ElementNode.ts';
 import { ComponentNode } from './node/ComponentNode.ts';
+import { normalizeChildren } from './utils/normalizeChildren.ts';
 
 export let renderer = html();
-
-export function normalizeChildren(
-    children: NullableChildType[],
-): ChildNodeType[] {
-    const result: any[] = [];
-
-    children.forEach((child) => {
-        if (child && typeof child !== 'boolean') {
-            if (typeof child === 'string' || typeof child === 'number') {
-                result.push(new TextNode(`${child}`));
-            } else if (Array.isArray(child)) {
-                normalizeChildren(child).forEach(result.push);
-            } else if (
-                child.type === NODE_TYPE.ELEMENT ||
-                child.type === NODE_TYPE.TEXT ||
-                child.type === NODE_TYPE.COMPONENT
-            ) {
-                result.push(child);
-            } else {
-                throw new TypeError(`Unrecognized node type: ${typeof child}`);
-            }
-        }
-    });
-
-    return result;
-}
 
 export const jsx = <P extends NodePropsType = NodePropsType>(
     element: string | ComponentFunctionType,

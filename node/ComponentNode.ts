@@ -5,8 +5,8 @@ import {
 } from '../types.ts';
 import { NODE_TYPE } from '../constants.ts';
 import { FragmentNode } from './FragmentNode.ts';
-import { normalizeChildren } from '../jsx.ts';
 import { Node } from './Node.ts';
+import { normalizeChildren } from '../utils/normalizeChildren.ts';
 
 export class ComponentNode extends Node {
     type = NODE_TYPE.COMPONENT;
