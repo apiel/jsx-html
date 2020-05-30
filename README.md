@@ -34,3 +34,6 @@ import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod
 const View = () => <div>Hello</div>;
 console.log((<View />).render());
 ```
+
+> **Note:** prefer using sermver tags version instead of latest to avoid conflict with caching, e.g:
+`import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/1.0.0/mod.ts';`.

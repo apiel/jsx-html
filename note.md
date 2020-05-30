@@ -9,3 +9,8 @@ https://deno.land/manual/contributing/style_guide
 
 - would be great to make it as well node compatible:
 tsc examples/01.tsx --jsx react --outDir dist && node dist/examples/01.js
+
+git tag --delete latest
+git push --delete origin latest
+git tag latest
+git push --tags
