@@ -17,10 +17,11 @@ export class ComponentNode extends Node {
         children: NullableChildType[],
     ) {
         super(children);
+        console.log('yoyoyoy', { component: this.component, props: this.props, children });
     }
 
-    render(): string | any[] {
-        return [].concat(this.renderComponent() as any).join('');
+    async render(): Promise<string | any[]> {
+        return [].concat(await this.renderComponent() as any).join('');
     }
 
     renderComponent() {

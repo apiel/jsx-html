@@ -7,13 +7,13 @@ export abstract class Node {
 
     constructor(public children: NullableChildType[]) {}
 
-    abstract render(): string | any[];
+    abstract async render(): Promise<string | any[]>;
 
-    renderChildren() {
+    async renderChildren() {
         const result: string[] = [];
         const children = normalizeChildren(this.children);
-        children.forEach((child) => {
-            const renderedChild = child.render();
+        for (const child of children) {
+            const renderedChild = await child.render();
             if (renderedChild) {
                 if (Array.isArray(renderedChild)) {
                     renderedChild.forEach(
@@ -23,7 +23,7 @@ export abstract class Node {
                     result.push(renderedChild);
                 }
             }
-        });
+        }
         return result;
     }
 }

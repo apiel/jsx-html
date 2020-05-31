@@ -6,7 +6,7 @@ export class TextNode {
 
     constructor(public text: string) {}
 
-    render(): string | any[] {
+    async render(): Promise<string | any[]> {
         return htmlEncode(this.text);
     }
 }

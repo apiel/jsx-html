@@ -1,7 +1,7 @@
 /// <reference path="../jsx.d.ts" />
 
 import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
-import { delay } from 'https://deno.land/std/async/delay.ts'
+import { delay } from 'https://deno.land/std/async/delay.ts';
 import { React } from '../mod.ts';
 
 const Title = async () => {
@@ -9,11 +9,13 @@ const Title = async () => {
     return <h1>title</h1>;
 };
 
-const View = () => (
-    <div>
-        <Title />
-    </div>
-);
+// const View = () => (
+//     <div>
+//         <Title />
+//     </div>
+// );
+
+const View = () => <Title />;
 
 if (import.meta.main) {
     console.log((<View />).render());

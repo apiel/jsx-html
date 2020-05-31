@@ -23,27 +23,27 @@ const View = () => (
 );
 
 if (import.meta.main) {
-    console.log((<View />).render());
+    (<View />).render().then(console.log);
 } else {
     // Run test
 
-    Deno.test('render title', () => {
-        assertEquals((<Title />).render(), '<h1>title</h1>');
+    Deno.test('render title', async() => {
+        assertEquals(await (<Title />).render(), '<h1>title</h1>');
     });
 
-    Deno.test('render value', () => {
+    Deno.test('render value', async() => {
         const val = 'hello';
-        assertEquals((<Value val={val} />).render(), `<p>value: ${val}</p>`);
+        assertEquals(await (<Value val={val} />).render(), `<p>value: ${val}</p>`);
     });
 
-    Deno.test('render numeric', () => {
+    Deno.test('render numeric', async() => {
         const num = 123;
-        assertEquals((<Numeric num={num} />).render(), `<p>num: ${num}</p>`);
+        assertEquals(await (<Numeric num={num} />).render(), `<p>num: ${num}</p>`);
     });
 
-    Deno.test('render view', () => {
+    Deno.test('render view', async() => {
         assertEquals(
-            (<View />).render(),
+            await (<View />).render(),
             '<div class="deno"><h1>title</h1><p valid checked select>land</p><br /><hr /><p>value: hello</p><p>num: 23</p></div>',
         );
     });

@@ -18,13 +18,13 @@ export class ElementNode extends Node {
         super(children);
     }
 
-    render(): string | any[] {
+    async render(): Promise<string | any[]> {
         const renderedProps = this.propsToHTML();
 
         const renderedChildren =
             typeof this.props[ELEMENT_PROP.INNER_HTML] === 'string'
                 ? this.props[ELEMENT_PROP.INNER_HTML]
-                : this.renderChildren().join('');
+                : (await this.renderChildren()).join('');
 
         return renderedChildren
             ? `<${this.name}${renderedProps}>${renderedChildren}</${this.name}>`
