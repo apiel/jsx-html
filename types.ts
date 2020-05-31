@@ -20,4 +20,4 @@ export type NodeType = ChildNodeType | FragmentNode;
 export type ChildType = ChildNodeType | Primitive;
 export type NullableChildType = ChildType | ChildNodeType | NullablePrimitive;
 
-export type ComponentFunctionType = (props: NodePropsType, child?: NullableChildType[]) => NullableChildType;
+export type ComponentFunctionType = (props: NodePropsType, child?: NullableChildType[]) => NullableChildType | Promise<NullableChildType>;

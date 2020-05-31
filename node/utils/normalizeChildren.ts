@@ -7,7 +7,7 @@ export function normalizeChildren(
 ): ChildNodeType[] {
     const result: any[] = [];
 
-    children.forEach((child) => {
+    for (const child of children) {
         if (child && typeof child !== 'boolean') {
             if (typeof child === 'string' || typeof child === 'number') {
                 result.push(new TextNode(`${child}`));
@@ -23,7 +23,7 @@ export function normalizeChildren(
                 throw new TypeError(`Unrecognized node type: ${typeof child}`);
             }
         }
-    });
+    }
 
     return result;
 }

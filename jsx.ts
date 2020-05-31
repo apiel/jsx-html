@@ -16,12 +16,9 @@ export const jsx = <P extends NodePropsType = NodePropsType>(
     const nodeProps = props || {};
 
     if (typeof element === 'string') {
-        console.log('ElementNode', element);
         return new ElementNode(element, nodeProps, children);
     }
-
     if (typeof element === 'function') {
-        console.log('ComponentNode');
         return new ComponentNode(element, nodeProps, children);
     }
 

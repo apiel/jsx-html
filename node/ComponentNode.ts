@@ -17,15 +17,14 @@ export class ComponentNode extends Node {
         children: NullableChildType[],
     ) {
         super(children);
-        console.log('yoyoyoy', { component: this.component, props: this.props, children });
     }
 
     async render(): Promise<string | any[]> {
         return [].concat(await this.renderComponent() as any).join('');
     }
 
-    renderComponent() {
-        const child = this.component(this.props, this.children);
+    async renderComponent() {
+        const child = await this.component(this.props, this.children);
         const children = normalizeChildren(
             Array.isArray(child) ? child : [child],
         );
