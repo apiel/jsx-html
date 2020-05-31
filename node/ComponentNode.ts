@@ -1,12 +1,12 @@
 import {
     NodePropsType,
     ComponentFunctionType,
-    ChildNodeType,
+    NullableChildType,
 } from '../types.ts';
 import { NODE_TYPE } from '../constants.ts';
 import { FragmentNode } from './FragmentNode.ts';
 import { Node } from './Node.ts';
-import { normalizeChildren } from '../utils/normalizeChildren.ts';
+import { normalizeChildren } from './utils/normalizeChildren.ts';
 
 export class ComponentNode extends Node {
     type = NODE_TYPE.COMPONENT;
@@ -14,7 +14,7 @@ export class ComponentNode extends Node {
     constructor(
         public component: ComponentFunctionType,
         public props: NodePropsType,
-        children: ChildNodeType[],
+        children: NullableChildType[],
     ) {
         super(children);
     }

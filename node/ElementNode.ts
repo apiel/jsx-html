@@ -1,5 +1,5 @@
 import { NODE_TYPE } from '../constants.ts';
-import { NodePropsType, ChildNodeType } from '../types.ts';
+import { NodePropsType, NullableChildType } from '../types.ts';
 import { Node } from './Node.ts';
 
 export class ElementNode extends Node {
@@ -8,7 +8,7 @@ export class ElementNode extends Node {
     constructor(
         public name: string,
         public props: NodePropsType,
-        children: ChildNodeType[],
+        children: NullableChildType[],
     ) {
         super(children);
     }

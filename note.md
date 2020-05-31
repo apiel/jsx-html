@@ -1,4 +1,4 @@
-deno test examples/01.test.tsx
+deno test examples/01.tsx
 
 deno run examples/00.tsx
 deno run examples/01.tsx

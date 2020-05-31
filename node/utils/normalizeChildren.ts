@@ -1,6 +1,6 @@
-import { NullableChildType, ChildNodeType } from '../types.ts';
-import { TextNode } from '../node/TextNode.ts';
-import { NODE_TYPE } from '../constants.ts';
+import { NullableChildType, ChildNodeType } from '../../types.ts';
+import { TextNode } from '../TextNode.ts';
+import { NODE_TYPE } from '../../constants.ts';
 
 export function normalizeChildren(
     children: NullableChildType[],
