@@ -1,5 +1,4 @@
 import { NODE_TYPE } from '../constants.ts';
-import { renderer } from '../jsx.ts';
 import { NullableChildType } from '../types.ts';
 import { normalizeChildren } from './utils/normalizeChildren.ts';
 
@@ -8,9 +7,7 @@ export abstract class Node {
 
     constructor(public children: NullableChildType[]) {}
 
-    render(): string | any[] {
-        return renderer(this);
-    }
+    abstract render(): string | any[];
 
     renderChildren() {
         const result: string[] = [];

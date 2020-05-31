@@ -1,5 +1,5 @@
 import { NODE_TYPE } from '../constants.ts';
-import { renderer } from '../jsx.ts';
+import { htmlEncode } from './utils/htmlEncode.ts';
 
 export class TextNode {
     type = NODE_TYPE.TEXT;
@@ -7,6 +7,6 @@ export class TextNode {
     constructor(public text: string) {}
 
     render(): string | any[] {
-        return renderer(this);
+        return htmlEncode(this.text);
     }
 }

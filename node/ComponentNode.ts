@@ -19,6 +19,10 @@ export class ComponentNode extends Node {
         super(children);
     }
 
+    render(): string | any[] {
+        return [].concat(this.renderComponent() as any).join('');
+    }
+
     renderComponent() {
         const child = this.component(this.props, this.children);
         const children = normalizeChildren(
