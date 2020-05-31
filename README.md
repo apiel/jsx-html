@@ -8,7 +8,8 @@
 import { React } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod.ts';
 
 const View = () => <div>Hello</div>;
-console.log((<View />).render());
+// render return a Promise
+(<View />).render().then((html: string) => console.log(html));
 ```
 
 ```sh
@@ -19,10 +20,10 @@ As you would do with React, you need to import `React` from `jsx-html` for the t
 
 ```json
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "jsx"
-  }
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "jsx"
+    }
 }
 ```
 
@@ -32,8 +33,30 @@ As you would do with React, you need to import `React` from `jsx-html` for the t
 import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod.ts';
 
 const View = () => <div>Hello</div>;
-console.log((<View />).render());
+(<View />).render().then(console.log);
 ```
 
 > **Note:** prefer using sermver tags version instead of latest to avoid conflict with caching, e.g:
-`import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/1.0.0/mod.ts';`.
+> `import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/1.0.0/mod.ts';`.
+
+## Async component
+
+Unlike React, components can be asynchrone, so you can fetch for data without to handle states.
+
+```tsx
+import { React } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod.ts';
+
+const Data = async () => {
+    const res = await fetch('http://example.com/some/api');
+    const content = new Uint8Array(await res.arrayBuffer());
+    return <div>{content}</div>;
+};
+
+const View = () => (
+    <div>
+        <Data />
+    </div>
+);
+
+(<View />).render().then(console.log);
+```

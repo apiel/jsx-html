@@ -6,7 +6,7 @@ import { React } from '../mod.ts';
 
 const Title = async () => {
     await delay(100);
-    return <h1>title</h1>;
+return <h1>title{ await delay(100) }</h1>;
 };
 
 const View = () => (
