@@ -1,12 +1,27 @@
 import { jsx, Fragment } from './jsx.ts';
+import {
+    ComponentFunctionType,
+    NodePropsType,
+    NullableChildType,
+} from './types.ts';
 
 export { ElementNode } from './node/ElementNode.ts';
 export { ComponentNode } from './node/ComponentNode.ts';
-export { jsx, Fragment };
+export {
+    jsx,
+    Fragment,
+    ComponentFunctionType,
+    NullableChildType,
+    NodePropsType,
+};
 
 export const React = {
     Fragment,
-    createElement(factory: any, props: any, ...children: any[]) {
-        return jsx(factory, props, ...children);
+    createElement<P extends NodePropsType = NodePropsType>(
+        element: string | ComponentFunctionType,
+        props: P | null,
+        ...children: NullableChildType[]
+    ) {
+        return jsx(element, props, ...children);
     },
 };
