@@ -1,0 +1,12 @@
+{
+    "cmds": {
+        "start": ["den 00", "den 01", "den 02", "den 03", "den 04"],
+        "00": "deno run examples/00.tsx",
+        "01": "deno run examples/01.tsx",
+        "01:test": "deno test examples/01.tsx",
+        "02": "deno run -c examples/02/tsconfig.json examples/02/02.tsx",
+        "03": "deno run examples/03-async.tsx",
+        "03:test": "deno test examples/03-async.tsx",
+        "04": "deno run examples/04.tsx"
+    }
+}

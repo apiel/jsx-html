@@ -1,7 +1,7 @@
 import { NODE_TYPE } from '../constants.ts';
 import { NodePropsType, NullableChildType } from '../types.ts';
 import { Node } from './Node.ts';
-import { htmlEncode } from './utils/htmlEncode.ts';
+import { doubleQuoteEncode } from './utils/htmlEncode.ts';
 
 const ELEMENT_PROP = {
     INNER_HTML: 'innerHTML',
@@ -54,12 +54,14 @@ export class ElementNode extends Node {
 
         const props = this.props;
         const pairs = keys.map((key) => {
-            const val = props[key];
-
-            if (val === true || val === '') {
-                return htmlEncode(key);
+            if (!/^[a-zA-Z0-9-:\._]+$/.test(key)) {
+                throw new Error(`Invalid attribute name format ${key}`);
             }
-            return `${htmlEncode(key)}="${htmlEncode(val.toString())}"`;
+            const val = props[key];
+            // https://html.spec.whatwg.org/multipage/dom.html#attributes
+            return val === true || val === ''
+                ? key
+                : `${key}="${doubleQuoteEncode(val.toString())}"`;
         });
 
         return ` ${pairs.join(' ')}`;

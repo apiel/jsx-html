@@ -1,9 +1,13 @@
-export function htmlEncode(text: string): string {
+export function doubleQuoteEncode(text: string): string {
     return text
+        .replace(/"/g, '&quot;')
+}
+
+export function htmlEncode(text: string): string {
+    return doubleQuoteEncode(text
         .replace(/&/g, '&amp;')
+        .replace(/\//g, '&#x2F;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/\//g, '&#x2F;');
+        .replace(/'/g, '&#39;'));
 }
