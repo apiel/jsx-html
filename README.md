@@ -1,6 +1,6 @@
 # jsx-html
 
-`jsx-html` render JSX template to HTML asynchronously. Compatible with Deno and nodejs.
+`jsx-html` render JSX template to HTML asynchronously. Compatible with Deno and NodeJs.
 
 ```tsx
 /// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/latest/jsx.d.ts" />
