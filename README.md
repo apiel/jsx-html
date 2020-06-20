@@ -2,6 +2,24 @@
 
 `jsx-html` render JSX template to HTML asynchronously. Compatible with Deno and NodeJs.
 
+## NodeJs
+
+```sh
+yarn add async-jsx-html
+# or
+npm install async-jsx-html
+```
+
+```tsx
+import { React } from 'async-jsx-html';
+
+const View = () => <div>Hello</div>;
+// render return a Promise
+(<View />).render().then((html: string) => console.log(html));
+```
+
+## Deno
+
 ```tsx
 /// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/latest/jsx.d.ts" />
 
@@ -15,6 +33,8 @@ const View = () => <div>Hello</div>;
 ```sh
 deno run https://raw.githubusercontent.com/apiel/jsx-html/latest/examples/00.tsx
 ```
+
+## TsConfig
 
 As you would do with React, you need to import `React` from `jsx-html` for the transpiler. If you are not feeling confortable with using `React` as import since it is not React, you can import `jsx` from `jsx-html` but you would have to update your tsconfig file: https://github.com/denoland/deno/issues/3572
 
@@ -59,20 +79,4 @@ const View = () => (
 );
 
 (<View />).render().then(console.log);
-```
-
-## Nodejs
-
-```sh
-yarn add async-jsx-html
-# or
-npm install async-jsx-html
-```
-
-```tsx
-import { React } from 'async-jsx-html';
-
-const View = () => <div>Hello</div>;
-// render return a Promise
-(<View />).render().then((html: string) => console.log(html));
 ```
