@@ -6,9 +6,8 @@
     "author": "Alexandre Piel <alexandre.piel@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "clean": "rm -rf nodejs/",
-        "build-tsc": "yarn clean && tsc -p tsconfig.json",
-        "build": "yarn clean && babel . --ignore node_modules,examples,dist,jsx.d.ts,deno.d.ts --out-dir nodejs --extensions .ts",
+        "clean": "rm -rf nodejs/ && rm -rf tmp/",
+        "build": "yarn clean && node deno2nodejs.js && tsc -p ./tmp/tsconfig.json",
         "transpile": "babel --no-babelrc --plugins @babel/plugin-transform-react-jsx ./examples/node_01.jsx -o ./examples/node_01.js",
         "start": "yarn transpile && node ./examples/node_01.js"
     },

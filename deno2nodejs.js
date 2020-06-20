@@ -2,8 +2,10 @@ const fs = require('fs');
 const { parse } = require('@babel/parser');
 const { default: generator } = require('@babel/generator');
 const { default: traverse } = require('@babel/traverse');
-const { resolve, extname } = require('path');
+const { resolve, extname, join, dirname } = require('path');
+const { tmpdir } = require('os');
 const { readdir } = require('fs').promises;
+const { cwd } = require('process');
 
 const exts = ['.ts'];
 const excludes = [
@@ -11,10 +13,33 @@ const excludes = [
     '/examples/',
     '/dist/',
     '/jsx.d.ts',
+    '/mod.d.ts',
     '/deno.d.ts',
 ];
 
 const regExpRemoveExts = /\.(ts|tsx|js|jsx)$/i;
+
+const tsconfig = {
+    compilerOptions: {
+        types: ['node'],
+        module: 'commonjs',
+        declaration: true,
+        removeComments: true,
+        emitDecoratorMetadata: true,
+        experimentalDecorators: true,
+        allowSyntheticDefaultImports: true,
+        target: 'es6',
+        sourceMap: true,
+        outDir: join(cwd(), 'nodejs'),
+        baseUrl: './',
+    },
+};
+
+// const distFolder = join(tmpdir(), `deno2nodejs-${+new Date()}`);
+const distFolder = join(cwd(), `tmp`);
+console.log('distFolder:', distFolder);
+fs.mkdirSync(distFolder);
+fs.writeFileSync(join(distFolder, 'tsconfig.json'), JSON.stringify(tsconfig));
 
 async function getFiles(dir) {
     const dirents = await readdir(dir, { withFileTypes: true });
@@ -34,9 +59,14 @@ getFiles('./').then((files) => {
     );
     tsFiles.forEach((file) => {
         const code = deno2nodejs(file);
-        console.log({ code, file });
+        const dist = join(distFolder, file.substr(cwd().length));
+        const ensureDir = dirname(dist);
+        fs.mkdirSync(ensureDir, { recursive: true });
+        fs.writeFileSync(dist, code);
+        // console.log({ file, dist, ensureDir });
     });
 });
+// we might want to execute `tsc -p ./tmp/tsconfig.json` in here
 
 function deno2nodejs(file) {
     const source = fs.readFileSync(file).toString();
