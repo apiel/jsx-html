@@ -1,3 +1,0 @@
-{
-    "plugins": ["./babel-remove-ext.js", "module:typescript"]
-}

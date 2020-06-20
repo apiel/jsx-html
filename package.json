@@ -1,7 +1,8 @@
 {
     "name": "async-jsx-html",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "main": "nodejs/mod.js",
+    "types": "nodejs/mod.d.ts",
     "repository": "git@github.com:apiel/jsx-html.git",
     "author": "Alexandre Piel <alexandre.piel@gmail.com>",
     "license": "MIT",
@@ -16,12 +17,7 @@
         "@babel/core": "^7.10.3",
         "@babel/generator": "^7.10.3",
         "@babel/parser": "^7.10.3",
-        "@babel/plugin-proposal-class-properties": "^7.10.1",
-        "@babel/plugin-transform-modules-commonjs": "^7.10.1",
         "@babel/plugin-transform-react-jsx": "^7.10.3",
-        "@babel/plugin-transform-runtime": "^7.10.3",
-        "@babel/preset-env": "^7.10.3",
-        "@babel/preset-typescript": "^7.10.1",
         "@babel/traverse": "^7.10.3",
         "@types/node": "^14.0.13",
         "typescript": "^3.9.5"

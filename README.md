@@ -1,6 +1,6 @@
 # jsx-html
 
-`jsx-html` render JSX template to HTML.
+`jsx-html` render JSX template to HTML asynchronously. Compatible with Deno and nodejs.
 
 ```tsx
 /// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/latest/jsx.d.ts" />
@@ -59,4 +59,20 @@ const View = () => (
 );
 
 (<View />).render().then(console.log);
+```
+
+## Nodejs
+
+```sh
+yarn add async-jsx-html
+# or
+npm install async-jsx-html
+```
+
+```tsx
+import { React } from 'async-jsx-html';
+
+const View = () => <div>Hello</div>;
+// render return a Promise
+(<View />).render().then((html: string) => console.log(html));
 ```
