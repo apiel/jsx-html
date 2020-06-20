@@ -9,14 +9,19 @@
         "clean": "rm -rf nodejs/",
         "build-tsc": "yarn clean && tsc -p tsconfig.json",
         "build": "yarn clean && babel . --ignore node_modules,examples,dist,jsx.d.ts,deno.d.ts --out-dir nodejs --extensions .ts",
-        "transpile": "babel --plugins @babel/plugin-transform-react-jsx ./examples/node_01.jsx -o ./examples/node_01.js",
+        "transpile": "babel --no-babelrc --plugins @babel/plugin-transform-react-jsx ./examples/node_01.jsx -o ./examples/node_01.js",
         "start": "yarn transpile && node ./examples/node_01.js"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.3",
         "@babel/core": "^7.10.3",
+        "@babel/plugin-proposal-class-properties": "^7.10.1",
+        "@babel/plugin-transform-modules-commonjs": "^7.10.1",
         "@babel/plugin-transform-react-jsx": "^7.10.3",
+        "@babel/plugin-transform-runtime": "^7.10.3",
+        "@babel/preset-env": "^7.10.3",
         "@babel/preset-typescript": "^7.10.1",
-        "@types/node": "^14.0.13"
+        "@types/node": "^14.0.13",
+        "typescript": "^3.9.5"
     }
 }
