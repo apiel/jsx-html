@@ -12,7 +12,7 @@ export function normalizeChildren(
             if (typeof child === 'string' || typeof child === 'number') {
                 result.push(new TextNode(`${child}`));
             } else if (Array.isArray(child)) {
-                normalizeChildren(child).forEach(result.push);
+                normalizeChildren(child).forEach((normalized) => result.push(normalized));
             } else if (
                 child.type === NODE_TYPE.ELEMENT ||
                 child.type === NODE_TYPE.TEXT ||
