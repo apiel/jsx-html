@@ -17,10 +17,6 @@ const View = () => {
 
 if (import.meta.main) {
     (<View />).render().then(console.log);
-}
-
-if (import.meta.main) {
-    (<View />).render().then(console.log);
 } else {
     Deno.test('render with array', async () => {
         assertEquals(
