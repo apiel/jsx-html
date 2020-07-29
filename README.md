@@ -21,9 +21,9 @@ const View = () => <div>Hello</div>;
 ## Deno
 
 ```tsx
-/// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/latest/jsx.d.ts" />
+/// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/master/jsx.d.ts" />
 
-import { React } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod.ts';
+import { React } from 'https://raw.githubusercontent.com/apiel/jsx-html/master/mod.ts';
 
 const View = () => <div>Hello</div>;
 // render return a Promise
@@ -31,7 +31,7 @@ const View = () => <div>Hello</div>;
 ```
 
 ```sh
-deno run https://raw.githubusercontent.com/apiel/jsx-html/latest/examples/00.tsx
+deno run https://raw.githubusercontent.com/apiel/jsx-html/master/examples/00.tsx
 ```
 
 ## TsConfig
@@ -48,15 +48,15 @@ As you would do with React, you need to import `React` from `jsx-html` for the t
 ```
 
 ```tsx
-/// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/latest/jsx.d.ts" />
+/// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/master/jsx.d.ts" />
 
-import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod.ts';
+import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/master/mod.ts';
 
 const View = () => <div>Hello</div>;
 (<View />).render().then(console.log);
 ```
 
-> **Note:** prefer using sermver tags version instead of latest to avoid conflict with caching, e.g:
+> **Note:** prefer using sermver tags version instead of master to avoid conflict with caching, e.g:
 > `import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/1.0.0/mod.ts';`.
 
 ## Async component
@@ -64,7 +64,7 @@ const View = () => <div>Hello</div>;
 Unlike React, components can be asynchrone, so you can fetch for data without to handle states.
 
 ```tsx
-import { React } from 'https://raw.githubusercontent.com/apiel/jsx-html/latest/mod.ts';
+import { React } from 'https://raw.githubusercontent.com/apiel/jsx-html/master/mod.ts';
 
 const Data = async () => {
     const res = await fetch('http://example.com/some/api');
