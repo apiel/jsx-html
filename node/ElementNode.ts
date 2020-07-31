@@ -7,6 +7,26 @@ const ELEMENT_PROP = {
     INNER_HTML: 'innerHTML',
 };
 
+// List taken from http://w3c.github.io/html-reference/syntax.html
+const VOID_ELEMENTS = new Set<string>([
+    'area',
+    'base',
+    'br',
+    'col',
+    'command',
+    'embed',
+    'hr',
+    'img',
+    'input',
+    'keygen',
+    'link',
+    'meta',
+    'param',
+    'source',
+    'track',
+    'wbr',
+]);
+
 export class ElementNode extends Node {
     type = NODE_TYPE.ELEMENT;
 
@@ -26,8 +46,10 @@ export class ElementNode extends Node {
                 ? this.props[ELEMENT_PROP.INNER_HTML]
                 : (await this.renderChildren()).join('');
 
-        return renderedChildren
-            ? `<${this.name}${renderedProps}>${renderedChildren}</${this.name}>`
+        
+        
+        return (renderedChildren || !VOID_ELEMENTS.has(this.name))
+            ? `<${this.name}${renderedProps}>${renderedChildren || ""}</${this.name}>`
             : `<${this.name}${renderedProps} />`;
     }
 
