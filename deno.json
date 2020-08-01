@@ -1,7 +1,7 @@
 {
     "cmds": {
-        "start": ["den 00", "den 01", "den 02", "den 03", "den 04", "den 05"],
-        "test": ["den 01:test", "den 03:test", "den 05:test"],
+        "start": ["den 00", "den 01", "den 02", "den 03", "den 04", "den 05", "den 06"],
+        "test": ["den 01:test", "den 03:test", "den 05:test", "den 06:test"],
         "00": "deno run examples/00.tsx",
         "01": "deno run examples/01.tsx",
         "01:test": "deno test examples/01.tsx",
@@ -10,6 +10,8 @@
         "03:test": "deno test examples/03-async.tsx",
         "04": "deno run examples/04.tsx",
         "05": "deno run examples/05.tsx",
-        "05:test": "deno test examples/05.tsx"
+        "05:test": "deno test examples/05.tsx",
+        "06": "deno run examples/06.tsx",
+        "06:test": "deno test examples/06.tsx"
     }
 }
