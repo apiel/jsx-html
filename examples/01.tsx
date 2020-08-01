@@ -47,4 +47,16 @@ if (import.meta.main) {
             '<div class="deno"><h1>title</h1><p valid checked select>land</p><br /><hr /><p>value: hello</p><p>num: 23</p></div>',
         );
     });
+
+    Deno.test('render empty', async ()=>{
+        assertEquals(
+            await (<div/>).render(),
+            `<div></div>`
+        )
+
+        assertEquals(
+            await (<img/>).render(),
+            `<img />`
+        )
+    })
 }
