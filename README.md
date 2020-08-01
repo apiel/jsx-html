@@ -85,7 +85,7 @@ const View = () => (
 
 The Element property innerHTML sets the HTML or XML markup contained within the property.
 
-In general, setting HTML from code is risky because it’s easy to inadvertently expose your users to a cross-site scripting (XSS) attack. So, you can set HTML directly from React, but you have to type out dangerouslySetInnerHTML and pass an object with a __html key, to remind yourself that it’s dangerous.
+In general, setting HTML from code is risky because it’s easy to inadvertently expose your users to a cross-site scripting (XSS) attack.
 
 ```tsx
 /// <reference path="https://raw.githubusercontent.com/apiel/jsx-html/master/jsx.d.ts" />
