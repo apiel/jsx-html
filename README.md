@@ -100,4 +100,4 @@ const View = () => <div innerHTML="<b>hello</b> world" />;
 
 ## Browser
 
-`jsx-html` can also be used directly in browser. Find an example with webpack here.
+`jsx-html` can also be used directly in browser. Find an example with webpack [here](https://github.com/apiel/jsx-html/tree/master/examples/browser).
