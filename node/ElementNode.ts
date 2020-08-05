@@ -46,10 +46,10 @@ export class ElementNode extends Node {
                 ? this.props[ELEMENT_PROP.INNER_HTML]
                 : (await this.renderChildren()).join('');
 
-        
-        
-        return (renderedChildren || !VOID_ELEMENTS.has(this.name))
-            ? `<${this.name}${renderedProps}>${renderedChildren || ""}</${this.name}>`
+        return renderedChildren || !VOID_ELEMENTS.has(this.name)
+            ? `<${this.name}${renderedProps}>${renderedChildren || ''}</${
+                  this.name
+              }>`
             : `<${this.name}${renderedProps} />`;
     }
 

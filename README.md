@@ -1,6 +1,8 @@
 # jsx-html
 
-`jsx-html` render JSX template to HTML asynchronously. Compatible with Deno and NodeJs.
+`jsx-html` render JSX template to HTML asynchronously. Compatible with Deno, NodeJs and can also run in browser.
+
+Try with runkit: https://runkit.com/apiel/jsx-html-example
 
 ## NodeJs
 
@@ -95,3 +97,7 @@ import { jsx } from 'https://raw.githubusercontent.com/apiel/jsx-html/master/mod
 const View = () => <div innerHTML="<b>hello</b> world" />;
 (<View />).render().then(console.log); // will output <div><b>hello</b> world</div>
 ```
+
+## Browser
+
+`jsx-html` can also be used directly in browser. Find an example with webpack here.

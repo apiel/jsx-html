@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+
+    <script src="index.js"></script>
+
+    <div id="div-container" />
+
+    <script>
+      demo.Test().render('#div-container').then((html) => {
+        document.getElementById('div-container').innerHTML = html;
+      });
+    </script>
+
+  </body>
+</html>
