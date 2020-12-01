@@ -12,6 +12,10 @@
         "05": "deno run examples/05.tsx",
         "05:test": "deno test examples/05.tsx",
         "06": "deno run examples/06.tsx",
-        "06:test": "deno test examples/06.tsx"
+        "06:test": "deno test examples/06.tsx",
+        "07": "deno run examples/07-children.tsx",
+        "07:test": "deno test examples/07-children.tsx",
+        "08": "deno run examples/08-script.tsx",
+        "08:test": "deno test examples/08-script.tsx"
     }
 }
