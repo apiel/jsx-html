@@ -1,6 +1,6 @@
 {
     "name": "async-jsx-html",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "main": "nodejs/mod.js",
     "types": "nodejs/mod.d.ts",
     "repository": "git@github.com:apiel/jsx-html.git",
