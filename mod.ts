@@ -22,6 +22,6 @@ export const React = {
         props: P | null,
         ...children: NullableChildType[]
     ) {
-        return jsx(element, props, ...children);
+        return jsx(element, { ...props, children }, ...children);
     },
 };

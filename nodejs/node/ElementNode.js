@@ -16,6 +16,7 @@ const htmlEncode_1 = require("./utils/htmlEncode");
 const ELEMENT_PROP = {
     INNER_HTML: 'innerHTML'
 };
+const VOID_ELEMENTS = new Set(['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 class ElementNode extends Node_1.Node {
     constructor(name, props, children) {
         super(children);
@@ -27,7 +28,7 @@ class ElementNode extends Node_1.Node {
         return __awaiter(this, void 0, void 0, function* () {
             const renderedProps = this.propsToHTML();
             const renderedChildren = typeof this.props[ELEMENT_PROP.INNER_HTML] === 'string' ? this.props[ELEMENT_PROP.INNER_HTML] : (yield this.renderChildren()).join('');
-            return renderedChildren ? `<${this.name}${renderedProps}>${renderedChildren}</${this.name}>` : `<${this.name}${renderedProps} />`;
+            return renderedChildren || !VOID_ELEMENTS.has(this.name) ? `<${this.name}${renderedProps}>${renderedChildren || ''}</${this.name}>` : `<${this.name}${renderedProps} />`;
         });
     }
     getValidProps() {

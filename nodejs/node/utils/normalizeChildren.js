@@ -11,7 +11,7 @@ function normalizeChildren(children) {
                 result.push(new TextNode_1.TextNode(`${child}`));
             }
             else if (Array.isArray(child)) {
-                normalizeChildren(child).forEach(result.push);
+                normalizeChildren(child).forEach(normalized => result.push(normalized));
             }
             else if (child.type === constants_1.NODE_TYPE.ELEMENT || child.type === constants_1.NODE_TYPE.TEXT || child.type === constants_1.NODE_TYPE.COMPONENT) {
                 result.push(child);

@@ -11,7 +11,7 @@ Object.defineProperty(exports, "ComponentNode", { enumerable: true, get: functio
 exports.React = {
     Fragment: jsx_1.Fragment,
     createElement(element, props, ...children) {
-        return jsx_1.jsx(element, props, ...children);
+        return jsx_1.jsx(element, Object.assign(Object.assign({}, props), { children }), ...children);
     }
 };
 //# sourceMappingURL=mod.js.map
