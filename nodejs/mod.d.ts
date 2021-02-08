@@ -7,3 +7,4 @@ export declare const React: {
     Fragment: (props: NodePropsType, children: import("./types").ChildType) => NullableChildType;
     createElement<P extends NodePropsType = NodePropsType>(element: string | ComponentFunctionType, props: P, ...children: NullableChildType[]): import("./node/ElementNode").ElementNode | import("./node/ComponentNode").ComponentNode;
 };
+export default React;

@@ -14,4 +14,5 @@ exports.React = {
         return jsx_1.jsx(element, Object.assign(Object.assign({}, props), { children }), ...children);
     }
 };
+exports.default = exports.React;
 //# sourceMappingURL=mod.js.map

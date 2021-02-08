@@ -25,3 +25,5 @@ export const React = {
         return jsx(element, { ...props, children }, ...children);
     },
 };
+
+export default React;

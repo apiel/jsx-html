@@ -1,6 +1,6 @@
 {
     "name": "async-jsx-html",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "main": "nodejs/mod.js",
     "types": "nodejs/mod.d.ts",
     "repository": "git@github.com:apiel/jsx-html.git",
@@ -8,9 +8,9 @@
     "license": "MIT",
     "scripts": {
         "clean": "rm -rf nodejs/ && rm -rf tmp/",
-        "build": "yarn clean && node deno2nodejs.js && tsc -p ./tmp/tsconfig.json",
+        "build": "npm run clean && node deno2nodejs.js && tsc -p ./tmp/tsconfig.json",
         "transpile": "babel --no-babelrc --plugins @babel/plugin-transform-react-jsx ./examples/node_01.jsx -o ./examples/node_01.js",
-        "start": "yarn transpile && node ./examples/node_01.js"
+        "start": "npm run transpile && node ./examples/node_01.js"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.3",
