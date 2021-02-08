@@ -15,4 +15,3 @@ exports.React = {
     }
 };
 exports.default = exports.React;
-//# sourceMappingURL=mod.js.map

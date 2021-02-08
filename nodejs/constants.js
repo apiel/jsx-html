@@ -9,4 +9,3 @@ var NODE_TYPE;
     NODE_TYPE["FRAGMENT"] = "fragment";
 })(NODE_TYPE = exports.NODE_TYPE || (exports.NODE_TYPE = {}));
 ;
-//# sourceMappingURL=constants.js.map

@@ -24,4 +24,3 @@ class TextNode {
     }
 }
 exports.TextNode = TextNode;
-//# sourceMappingURL=TextNode.js.map

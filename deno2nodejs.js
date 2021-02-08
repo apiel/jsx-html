@@ -29,7 +29,7 @@ const tsconfig = {
         experimentalDecorators: true,
         allowSyntheticDefaultImports: true,
         target: 'es6',
-        sourceMap: true,
+        sourceMap: false,
         outDir: join(cwd(), 'nodejs'),
         baseUrl: './',
     },

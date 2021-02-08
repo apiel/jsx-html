@@ -58,4 +58,3 @@ class ElementNode extends Node_1.Node {
     }
 }
 exports.ElementNode = ElementNode;
-//# sourceMappingURL=ElementNode.js.map

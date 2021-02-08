@@ -40,4 +40,3 @@ class ComponentNode extends Node_1.Node {
     }
 }
 exports.ComponentNode = ComponentNode;
-//# sourceMappingURL=ComponentNode.js.map

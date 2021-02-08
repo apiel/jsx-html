@@ -35,4 +35,3 @@ class Node {
     }
 }
 exports.Node = Node;
-//# sourceMappingURL=Node.js.map

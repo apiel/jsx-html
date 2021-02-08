@@ -16,4 +16,3 @@ exports.jsx = (element, props, ...children) => {
 exports.Fragment = (props, children) => {
     return children;
 };
-//# sourceMappingURL=jsx.js.map
